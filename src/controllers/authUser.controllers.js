@@ -29,12 +29,12 @@ const loginUser = (req, res) => {
                 res.cookie('access_token', access_token, {
                     httpOnly: true,
                     maxAge: process.env.JWT_ACCESS_TOKEN_EXPIRES_IN,
-                    // secure: true
+                    secure: true
                 });
                 res.cookie('refresh_token', refresh_token, {
                     httpOnly: true,
                     maxAge: process.env.JWT_REFRESH_TOKEN_EXPIRES_IN,
-                    // secure: true
+                    secure: true
                 });
                 res.status(200).send({ msg: "Login successful" });
                 // console.log(`access = ${access_token}, refresh = ${refresh_token}, claims = ${claims}`);
@@ -61,19 +61,16 @@ const refresh = (req, res) => {
             expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRES_IN
         });
 
-        res.header('Access-Control-Allow-Origin', "http://localhost:3000");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-        res.header('Access-Control-Allow-Credentials', true);
         // parsing in cookie
         res.cookie('access_token', access_token, {
             httpOnly: true,
             maxAge: process.env.JWT_ACCESS_TOKEN_EXPIRES_IN,
-            // secure: true
+            secure: true
         });
         res.cookie('refresh_token', refresh_token, {
             httpOnly: true,
             maxAge: process.env.JWT_REFRESH_TOKEN_EXPIRES_IN,
-            // secure: true
+            secure: true
         });
         res.status(200).send({ msg: "Login successful" });
     } catch (e) {
